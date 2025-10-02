@@ -1,0 +1,152 @@
+{
+  "name": "Kokoro-82M TTS Example",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f1d2e3c4-5b6a-7c8d-9e0f-1a2b3c4d5e6f",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "text",
+              "value": "Welcome to our YouTube channel! Today we're exploring the fascinating world of artificial intelligence and machine learning."
+            },
+            {
+              "name": "voice",
+              "value": "af_heart"
+            },
+            {
+              "name": "lang_code",
+              "value": "a"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "name": "Set TTS Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://kokoro-llm:5003/generate",
+        "options": {
+          "timeout": 60000
+        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "httpMethod": "POST",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"text\": \"{{ $json.text }}\",\n  \"voice\": \"{{ $json.voice }}\",\n  \"lang_code\": \"{{ $json.lang_code }}\"\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "id": "b2c3d4e5-6f7g-8h9i-0j1k-2l3m4n5o6p7q",
+      "name": "Generate Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "audio_url",
+              "value": "={{ $json.audio_url }}"
+            },
+            {
+              "name": "filename",
+              "value": "={{ $json.filename }}"
+            },
+            {
+              "name": "generation_time",
+              "value": "={{ $json.generation_time }}"
+            },
+            {
+              "name": "text_length",
+              "value": "={{ $json.text_length }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3d4e5f6-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
+      "name": "Extract Audio Info",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        900,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Prompt Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Prompt Data": {
+      "main": [
+        [
+          {
+            "node": "Generate Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Text": {
+      "main": [
+        [
+          {
+            "node": "Extract Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1.0.0",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "kokoro-integration-example",
+  "tags": []
+}
