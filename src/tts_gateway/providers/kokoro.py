@@ -178,4 +178,4 @@ class KokoroProvider(TTSProvider):
     @property
     def sample_rate(self) -> int:
         """Return the Kokoro sample rate."""
-        return SAMPLE_RATE
+        return int(SAMPLE_RATE)
