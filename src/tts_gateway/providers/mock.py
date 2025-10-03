@@ -41,8 +41,11 @@ class MockProvider(TTSProvider):
         rng = np.random.default_rng(seed)
         t = np.linspace(0, duration, int(self.sample_rate * duration), endpoint=False)
         noise = 0.02 * rng.standard_normal(t.shape)
-        signal = volume * np.sin(2 * np.pi * freq * t) * (1.0 + noise)
-        return cast(NDArray[np.float64], signal)
+        base_wave = np.sin(2 * np.pi * freq * t)
+        signal: NDArray[np.float64] = (
+            volume * base_wave * (1.0 + noise)
+        ).astype(np.float64, copy=False)
+        return signal
 
     def _to_wav_bytes(self, audio: NDArray[np.float64]) -> bytes:
         """Convert mono audio data to WAV format.
