@@ -42,9 +42,9 @@ class MockProvider(TTSProvider):
         t = np.linspace(0, duration, int(self.sample_rate * duration), endpoint=False)
         noise = 0.02 * rng.standard_normal(t.shape)
         base_wave = np.sin(2 * np.pi * freq * t)
-        signal: NDArray[np.float64] = (
-            volume * base_wave * (1.0 + noise)
-        ).astype(np.float64, copy=False)
+        signal: NDArray[np.float64] = (volume * base_wave * (1.0 + noise)).astype(
+            np.float64, copy=False
+        )
         return signal
 
     def _to_wav_bytes(self, audio: NDArray[np.float64]) -> bytes:
