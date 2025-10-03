@@ -41,7 +41,9 @@ def verify_checksum(path: Path, expected_sha256: str) -> bool:
     return digest.hexdigest() == expected_sha256
 
 
-def ensure_assets(dest_root: Path, force: bool = False, assets: Iterable[str] | None = None) -> None:
+def ensure_assets(
+    dest_root: Path, force: bool = False, assets: Iterable[str] | None = None
+) -> None:
     targets = list(assets) if assets else list(ASSETS.keys())
     for name in targets:
         meta = ASSETS.get(name)
