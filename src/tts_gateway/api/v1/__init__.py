@@ -1,4 +1,5 @@
 """API v1 routes."""
+
 from fastapi import APIRouter
 
 # Import routes directly to avoid circular imports

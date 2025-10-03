@@ -1,4 +1,5 @@
 """TTS synthesis endpoints."""
+
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status

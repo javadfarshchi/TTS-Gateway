@@ -1,4 +1,5 @@
 """Mock TTS provider for testing and development."""
+
 import hashlib
 import io
 import wave

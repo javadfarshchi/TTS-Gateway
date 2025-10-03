@@ -1,4 +1,5 @@
 """API router configuration."""
+
 from fastapi import APIRouter
 
 from .v1.routes_health import router as health_router

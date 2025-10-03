@@ -1,4 +1,5 @@
 """Dependencies for the TTS API."""
+
 import logging
 
 from fastapi import HTTPException, Request, status

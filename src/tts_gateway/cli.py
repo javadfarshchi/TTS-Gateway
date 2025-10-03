@@ -1,4 +1,5 @@
 """Command-line interface for the TTS Gateway."""
+
 import argparse
 import sys
 from pathlib import Path

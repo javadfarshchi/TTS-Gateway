@@ -1,4 +1,5 @@
 """Base TTS provider interface."""
+
 from abc import ABC, abstractmethod
 
 
