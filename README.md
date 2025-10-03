@@ -1,6 +1,6 @@
 # TTS Gateway
 
-[![CI](https://github.com/<your-org>/tts-gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-org>/tts-gateway/actions/workflows/ci.yml)
+[![CI](https://github.com/javadfarshchi/tts-gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-org>/tts-gateway/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A pluggable Text-to-Speech API gateway built with FastAPI. Route traffic to multiple engines through a single, consistent REST surface.
@@ -14,7 +14,7 @@ A pluggable Text-to-Speech API gateway built with FastAPI. Route traffic to mult
 ## Quick start (local)
 
 ```bash
-git clone https://github.com/<your-org>/tts-gateway.git
+git clone https://github.com/javadfarshchi/tts-gateway.git
 cd tts-gateway
 
 # Install developer dependencies + Kokoro runtime
